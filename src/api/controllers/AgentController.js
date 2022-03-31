@@ -70,8 +70,6 @@ const updateAgent = async (req, res) => {
     let id = req.params.id;
     let agent = await AgentService.updateAgent(req.body, id);
     let updated = 1;
-    console.log(agent[0])
-    // console.log(noUpdate);
     agent[0] === updated ?
         res.status(200).send({message: `Agent with the ID ${id} updated.`}) :
         res.status(404).send(
@@ -79,7 +77,6 @@ const updateAgent = async (req, res) => {
   } catch (err) {
     res.send(err.message)
   }
-
 }
 
 // 5. delete agent by id
@@ -90,8 +87,6 @@ const deleteAgent = async (req, res) => {
     let id = req.params.id;
     let agent = await AgentService.deleteAgent(id);
     let deleted = 1;
-    console.log(agent)
-    console.log(deleted)
     agent === deleted ?
         res.status(200).send({message: `Agent with the ID ${id} deleted.`}) :
         res.status(404).send(
@@ -127,5 +122,3 @@ module.exports = {
   deleteAgent,
   getAvailableAgents
 };
-
-
