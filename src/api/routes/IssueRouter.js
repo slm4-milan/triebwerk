@@ -1,5 +1,5 @@
-const issueController = require('../controllers/issueController');
-const agentController = require("../controllers/agentController");
+const issueController = require('../controllers/IssueController');
+const agentController = require("../controllers/AgentController");
 
 const router = require('express').Router();
 

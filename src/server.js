@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(urlencoded({extended: true}))
 
 //routers
-const issueRouter = require('./routes/issueRouter')
-const agentRouter = require('./routes/agentRouter')
+const issueRouter = require('./api/routes/IssueRouter')
+const agentRouter = require('./api/routes/AgentRouter')
 
 app.use('/api/agents', agentRouter);
 app.use('/api/issues', issueRouter);
