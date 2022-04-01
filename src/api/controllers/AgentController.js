@@ -1,6 +1,6 @@
-const db = require('../models');
+const db = require('../../repositories/models');
 const {response} = require("express");
-const AgentService = require('../services/AgentService')
+const AgentService = require('../../services/AgentService')
 
 // create main Model
 
@@ -31,7 +31,6 @@ const addAgent = async (req, res) => {
 // 2. get all agents
 
 const getAllAgents = async (req, res) => {
-  // let agents = await Agent.findAll({});
   try {
     let agents = await AgentService.getAgents()
     let noAgents;
@@ -114,11 +113,29 @@ const getAvailableAgents = async (req, res) => {
   }
 };
 
+// 7. get first available agent
+
+const getFirstAvailableAgent = async (req, res) => {
+  try {
+    let firstAvailableAgent = await AgentService.getFirstAvailableAgent()
+    let noAvailableAgents;
+    let numberOfAvailableAgents = firstAvailableAgent.length;
+    noAvailableAgents = undefined ?
+        res.status(404).send(
+            {message: 'There is no available agents.'}) :
+        res.status(200).send(firstAvailableAgent)
+
+  } catch (err) {
+    res.send(err.message)
+  }
+}
+
 module.exports = {
   addAgent,
   getAllAgents,
   getOneAgent,
   updateAgent,
   deleteAgent,
-  getAvailableAgents
+  getAvailableAgents,
+  getFirstAvailableAgent
 };

@@ -14,7 +14,12 @@ const deleteAgent = async id => await AgentRepository.deleteAgent(id);
 const getAvailableAgents = async () => {
   let availableAgents = await AgentRepository.getAvailableAgents()
   return availableAgents = availableAgents.sort(
-      ((a, b) => a.availableAt - b.availableAt))
+      ((a, b) => b.availableAt - a.availableAt))
+};
+
+const getFirstAvailableAgent = async () => {
+  let availableAgents = await getAvailableAgents()
+  return availableAgents.shift();
 };
 
 module.exports = {
@@ -23,5 +28,6 @@ module.exports = {
   findOneAgent,
   updateAgent,
   deleteAgent,
-  getAvailableAgents
+  getAvailableAgents,
+  getFirstAvailableAgent
 }

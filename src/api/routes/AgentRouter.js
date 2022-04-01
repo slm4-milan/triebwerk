@@ -8,6 +8,8 @@ router.get('/allAgents', agentController.getAllAgents)
 
 router.get('/availableAgents', agentController.getAvailableAgents)
 
+router.get('/firstAvailableAgent', agentController.getFirstAvailableAgent)
+
 router.get('/getAgent/:id', agentController.getOneAgent)
 
 router.put('/updateAgent/:id', agentController.updateAgent)

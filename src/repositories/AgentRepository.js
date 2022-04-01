@@ -1,6 +1,6 @@
 const {response} = require("express");
 
-const db = require("../models");
+const db = require("./models");
 
 // create main Model
 

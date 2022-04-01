@@ -7,6 +7,10 @@ router.post('/addIssue', issueController.createIssue)
 
 router.get('/getIssues', issueController.getAllIssues);
 
+router.get('/availableIssues', issueController.getAvailableIssues)
+
+router.get('/firstAvailableIssue', issueController.getFirstAvailableIssue)
+
 router.get('/getIssue/:id', issueController.getOneIssue)
 
 router.put('/updateIssue/:id', issueController.updateIssue)
