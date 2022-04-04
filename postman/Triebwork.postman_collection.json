@@ -148,6 +148,14 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get First Available Agent",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
@@ -272,6 +280,59 @@
 								"1"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Issues",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get First Available Issue",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Report Issue",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"report 7\",\r\n    \"description\":\"problem sa navigacijom\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/issues/reportIssue",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"issues",
+								"reportIssue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "testAssignIssue",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
