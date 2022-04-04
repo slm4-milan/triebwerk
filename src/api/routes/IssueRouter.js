@@ -5,7 +5,11 @@ const router = require('express').Router();
 
 router.post('/addIssue', issueController.createIssue)
 
+router.post('/reportIssue', issueController.reportIssue)
+
 router.get('/getIssues', issueController.getAllIssues);
+
+router.get('/testAssignIssue', issueController.testAssignIssue);
 
 router.get('/availableIssues', issueController.getAvailableIssues)
 

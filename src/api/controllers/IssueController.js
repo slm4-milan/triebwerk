@@ -125,6 +125,34 @@ const getFirstAvailableIssue = async (req, res) => {
   }
 }
 
+// 8. report issue
+
+const reportIssue = async (req, res) => {
+  try {
+    let info = {
+      title: req.body.title,
+      description: req.body.description
+    };
+    const reportedIssue = await IssueService.reportIssue(info);
+    res.status(200).send(reportedIssue);
+
+  } catch (err) {
+    res.send(err.message)
+  }
+}
+
+// test
+
+const testAssignIssue = async (req, res) => {
+  try {
+    let result = await IssueService.assignIssue()
+    res.status(200).send(result)
+
+  } catch (err) {
+    res.send(err.message)
+  }
+}
+
 module.exports = {
   createIssue,
   getAllIssues,
@@ -132,5 +160,7 @@ module.exports = {
   updateIssue,
   deleteIssue,
   getAvailableIssues,
-  getFirstAvailableIssue
+  getFirstAvailableIssue,
+  reportIssue,
+  testAssignIssue
 }

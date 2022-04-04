@@ -1,5 +1,9 @@
 const IssueRepository = require('../repositories/IssueRepository')
+
 const AgentRepository = require("../repositories/AgentRepository");
+
+const AgentService = require("../services/AgentService");
+const {json} = require("express");
 
 const createIssue = async info => await IssueRepository.createIssue(info);
 
@@ -23,6 +27,35 @@ const getFirstAvailableIssue = async () => {
   return availableIssues.shift();
 };
 
+const reportIssue = async (info) => {
+  return await createIssue(info);
+};
+
+const assignIssue = async () => {
+  let firstAvailableAgent = await AgentService.getFirstAvailableAgent()
+  let firstAvailableIssue = await getFirstAvailableIssue();
+  console.log(!firstAvailableAgent)
+  console.log(!firstAvailableIssue)
+
+  if (!firstAvailableAgent) {
+    return {message: 'There is no available agents in this moment.'}
+  } else if (!firstAvailableIssue) {
+    return {message: 'There is no unassigned issues in this moment.'}
+  } else {
+    let agentBody = {"isAvailable": "false"};
+    await AgentRepository
+    .updateAgent(agentBody, firstAvailableAgent.id)
+
+    let issueBody = {"inProcess": "true"}
+    await IssueRepository.updateIssue(issueBody, firstAvailableIssue.id)
+
+    firstAvailableAgent = await AgentService.findOneAgent(
+        firstAvailableAgent.id)
+    firstAvailableIssue = await findOneIssue(firstAvailableIssue.id)
+    return {agent: firstAvailableAgent, issue: firstAvailableIssue}
+  }
+}
+
 module.exports = {
   createIssue,
   getAllIssues,
@@ -30,6 +63,8 @@ module.exports = {
   updateIssue,
   deleteIssue,
   getAvailableIssues,
-  getFirstAvailableIssue
+  getFirstAvailableIssue,
+  reportIssue,
+  assignIssue
 }
 
