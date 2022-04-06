@@ -10,10 +10,10 @@ router.get('/availableAgents', agentController.getAvailableAgents)
 
 router.get('/firstAvailableAgent', agentController.getFirstAvailableAgent)
 
-router.get('/getAgent/:id', agentController.getOneAgent)
+router.get('/agent/:id', agentController.getOneAgent)
 
-router.put('/updateAgent/:id', agentController.updateAgent)
+router.put('/agent/:id', agentController.updateAgent)
 
-router.delete('/deleteAgent/:id', agentController.deleteAgent)
+router.delete('/agent/:id', agentController.deleteAgent)
 
 module.exports = router;
